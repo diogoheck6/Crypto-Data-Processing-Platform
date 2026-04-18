@@ -56,7 +56,7 @@
 
 ## In Progress
 
-- **Phase 1 — Domain Layer**: implementing value objects, entities, ports, domain services and their unit tests.
+- **Phase 1 — Domain Layer**: value objects ✅ + `Transaction` entity ✅ (63 tests). Test folder reorganized to mirror `src/domain/`. Next: `AssetPosition` entity.
 
 ---
 
@@ -64,7 +64,7 @@
 
 → See [NEXT_STEP.md](./NEXT_STEP.md) for the detailed task for the next session.
 
-**Upcoming:** Implement domain value objects and their unit tests (Phase 1).
+**Upcoming:** Implement domain entities — `Transaction`, `AssetPosition`, `ProcessingJob`, `ProcessingResult` (Phase 1, sub-step 1.5).
 
 ---
 

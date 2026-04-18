@@ -13,6 +13,7 @@
 - [x] Create top-level directories: `src/`, `tests/`, `docs/`, `docker/`, `alembic/`
 - [x] Create `src/__init__.py` and subdirectory structure: `domain/`, `application/`, `infra/`, `api/`
 - [x] Create `tests/` subdirectory structure: `unit/`, `integration/`, `api/`
+- [x] Mirror `src/domain/` inside `tests/unit/domain/`: `value_objects/`, `entities/`, `services/`, `ports/`
 
 ### Python project setup
 
@@ -63,22 +64,22 @@
 
 ### Value Objects
 
-- [ ] Implement `Money(amount: Decimal, currency: str)` — frozen dataclass, validates positive amount
-- [ ] Implement `Quantity(amount: Decimal)` — frozen dataclass, validates non-negative
-- [ ] Implement `AssetSymbol(symbol: str)` — frozen dataclass, uppercase normalization
-- [ ] Implement `TransactionType` — Enum: `BUY`, `SELL`, `FEE`, `DEPOSIT`, `WITHDRAWAL`, `TRANSFER`
-- [ ] Implement `CostBasisMethod` — Enum: `FIFO`, `WEIGHTED_AVERAGE`
+- [x] Implement `Money(amount: Decimal, currency: str)` — frozen dataclass, validates positive amount
+- [x] Implement `Quantity(amount: Decimal)` — frozen dataclass, validates non-negative
+- [x] Implement `AssetSymbol(symbol: str)` — frozen dataclass, uppercase normalization
+- [x] Implement `TransactionType` — Enum: `BUY`, `SELL`, `FEE`, `DEPOSIT`, `WITHDRAWAL`, `TRANSFER`
+- [x] Implement `CostBasisMethod` — Enum: `FIFO`, `WEIGHTED_AVERAGE`
 
 ### Unit tests — Value Objects
 
-- [ ] `test_money.py`: valid creation, negative amount raises, zero amount raises, equality
-- [ ] `test_quantity.py`: valid creation, negative raises, zero is valid (no-op position)
-- [ ] `test_asset_symbol.py`: uppercase normalization, empty string raises
-- [ ] `test_transaction_type.py`: all members present, invalid string raises
+- [x] `test_money.py`: valid creation, negative amount raises, zero amount raises, equality
+- [x] `test_quantity.py`: valid creation, negative raises, zero is valid (no-op position)
+- [x] `test_asset_symbol.py`: uppercase normalization, empty string raises
+- [x] `test_transaction_type.py`: all members present, invalid string raises
 
 ### Entities
 
-- [ ] Implement `Transaction` dataclass (all fields from DB schema, plus `transaction_type: TransactionType`)
+- [x] Implement `Transaction` dataclass (all fields from DB schema, plus `transaction_type: TransactionType`)
 - [ ] Implement `AssetPosition(asset: AssetSymbol, queue: deque[Transaction])` — FIFO queue holder
 - [ ] Implement `ProcessingJob` dataclass (id, status, source_type, timestamps)
 - [ ] Implement `ProcessingResult` dataclass (asset, realized_profit, cost_basis, remaining_quantity, remaining_cost_basis)
@@ -113,7 +114,7 @@
   - [ ] Duplicate transaction ID → rejected
   - [ ] Zero quantity transaction → rejected
 
-**Phase 1 exit check:** `pytest tests/unit/ --cov=src/domain --cov-report=term-missing` → 100% coverage.
+**Phase 1 exit check:** `pytest tests/unit/ --cov=src/domain --cov-fail-under=100 --cov-report=term-missing` → 100% domain coverage. See ARCHITECTURE.md § Test Coverage Standards for per-layer targets.
 
 ---
 

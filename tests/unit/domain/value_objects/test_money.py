@@ -40,6 +40,10 @@ class TestMoneyCreation:
         with pytest.raises(ValueError, match="must not be empty"):
             Money(Decimal("1"), "  ")
 
+    def test_non_string_currency_raises(self):
+        with pytest.raises(TypeError, match="must be a str"):
+            Money(Decimal("1"), 123)  # type: ignore
+
 
 class TestMoneyImmutability:
     def test_frozen_cannot_be_mutated(self):
