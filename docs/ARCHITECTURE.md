@@ -145,7 +145,11 @@ crypto-data-processing-platform/
 │   └── api/
 ├── tests/
 │   ├── unit/
-│   │   ├── domain/             # Value objects, entities, domain services
+│   │   ├── domain/
+│   │   │   ├── value_objects/  # Tests for frozen dataclass value objects
+│   │   │   ├── entities/       # Tests for domain entities (Transaction, etc.)
+│   │   │   ├── services/       # Tests for domain services (FIFO, normalizer, etc.)
+│   │   │   └── ports/          # ABCs — no unit tests needed
 │   │   └── parsers/            # CSV parser unit tests
 │   ├── integration/
 │   │   ├── repositories/       # Real DB tests
@@ -229,6 +233,19 @@ Return result summary to client
 
 ---
 
+## Test Coverage Standards
+
+| Layer              | Target    | Rationale                                                                         |
+| ------------------ | --------- | --------------------------------------------------------------------------------- |
+| `src/domain/`      | **100%**  | Pure business logic — every branch must be verified; enforced at Phase 1 exit     |
+| `src/application/` | **≥ 90%** | Use cases are integration-tested; minor orchestration branches acceptable to miss |
+| `src/api/`         | **≥ 85%** | Router tests via `TestClient`; dependency wiring excluded                         |
+| `src/infra/`       | **≥ 80%** | DB/IO code is harder to cover fully; focus on mapping and error paths             |
+
+**Enforcement:** `pytest --cov=src/domain --cov-fail-under=100` is the Phase 1 exit gate and will be added to CI for the domain layer permanently.
+
+---
+
 ## CI/CD Pipeline
 
 ```
@@ -240,7 +257,7 @@ feature/* branch  →  PR  →  CI  →  merge to main  →  CD staging (auto)
 **CI stages** (run on every push and PR):
 
 1. **Lint** — Ruff + Black + Mypy
-2. **Unit tests** — `pytest tests/unit/` with coverage gate ≥ 80%
+2. **Unit tests** — `pytest tests/unit/` with per-layer coverage gates (domain: 100%, application: 90%, api: 85%, infra: 80%)
 3. **Integration tests** — PostgreSQL service container, `alembic upgrade head`, `pytest tests/integration/ tests/api/`
 4. **Build** — Docker image built on every run; pushed to GHCR only on merge to `main`
 

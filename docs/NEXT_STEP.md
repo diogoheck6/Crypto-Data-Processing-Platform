@@ -29,8 +29,8 @@ and at 100% unit test coverage before Phase 2 begins.
 
 ## Task for This Session
 
-**Implement all domain value objects, entities, repository ports, and domain services.
-Write unit tests for every class. Reach 100% coverage on `src/domain/`.**
+**Continue Phase 1 domain entities. `Transaction` is done (18 tests, 63 total).
+Next: `AssetPosition`, `ProcessingJob`, `ProcessingResult` → commit entities → ports → services → 100% coverage gate.**
 
 ---
 
