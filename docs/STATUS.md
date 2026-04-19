@@ -56,7 +56,7 @@
 
 ## In Progress
 
-- **Phase 1 — Domain Layer**: value objects ✅ + `Transaction` entity ✅ (63 tests). Test folder reorganized to mirror `src/domain/`. Next: `AssetPosition` entity.
+- **Phase 1 — Domain Layer**: value objects ✅ + all 4 entities ✅ (122 tests, 100% domain coverage). Now on `feature/phase-1-ports`. Next: repository ports (4 ABCs).
 
 ---
 
@@ -64,7 +64,7 @@
 
 → See [NEXT_STEP.md](./NEXT_STEP.md) for the detailed task for the next session.
 
-**Upcoming:** Implement domain entities — `Transaction`, `AssetPosition`, `ProcessingJob`, `ProcessingResult` (Phase 1, sub-step 1.5).
+**Upcoming:** Implement repository ports — `ITransactionRepository`, `IJobRepository`, `IResultRepository`, `IValidationErrorRepository` (Phase 1, sub-step 1.6).
 
 ---
 
