@@ -29,8 +29,8 @@ and at 100% unit test coverage before Phase 2 begins.
 
 ## Task for This Session
 
-**Continue Phase 1 domain entities. `Transaction` is done (18 tests, 63 total).
-Next: `AssetPosition`, `ProcessingJob`, `ProcessingResult` → commit entities → ports → services → 100% coverage gate.**
+**Phase 1 entities are fully done (122 tests, 100% domain coverage).
+Now on `feature/phase-1-ports`. Next: implement the 4 repository port ABCs in `src/domain/ports/`, then proceed to domain services.**
 
 ---
 

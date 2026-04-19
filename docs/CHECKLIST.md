@@ -80,9 +80,9 @@
 ### Entities
 
 - [x] Implement `Transaction` dataclass (all fields from DB schema, plus `transaction_type: TransactionType`)
-- [ ] Implement `AssetPosition(asset: AssetSymbol, queue: deque[Transaction])` — FIFO queue holder
-- [ ] Implement `ProcessingJob` dataclass (id, status, source_type, timestamps)
-- [ ] Implement `ProcessingResult` dataclass (asset, realized_profit, cost_basis, remaining_quantity, remaining_cost_basis)
+- [x] Implement `AssetPosition(asset: AssetSymbol, queue: deque[Transaction])` — FIFO queue holder
+- [x] Implement `ProcessingJob` dataclass (id, status, source_type, timestamps)
+- [x] Implement `ProcessingResult` dataclass (asset, realized_profit, cost_basis, remaining_quantity, remaining_cost_basis)
 
 ### Repository Ports (Abstract Interfaces)
 
